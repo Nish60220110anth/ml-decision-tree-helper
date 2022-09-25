@@ -1,2 +1,6 @@
 [workspace]
 members = ["decision-helper", "gain-helper", "helper-helper"]
+
+[profile.release]
+debug = 0
+panic = 'unwind'
