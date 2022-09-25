@@ -16,10 +16,14 @@ pub fn cal_entropy(pos_count: i32, neg_count: i32) -> f32 {
 }
 
 pub fn cal_entropy_gini(pos_count: i32, neg_count: i32) -> f32 {
-    let pos_frac = (pos_count as f32) / ((pos_count + neg_count) as f32);
-    let neg_frac = (neg_count as f32) / ((pos_count + neg_count) as f32);
+    if pos_count == 0 && neg_count == 0 {
+        0.0
+    } else {
+        let pos_frac = (pos_count as f32) / ((pos_count + neg_count) as f32);
+        let neg_frac = (neg_count as f32) / ((pos_count + neg_count) as f32);
 
-    1.0 - libm::powf(pos_frac, 2.0) - libm::powf(neg_frac, 2.0)
+        1.0 - libm::powf(pos_frac, 2.0) - libm::powf(neg_frac, 2.0)
+    }
 }
 
 // Below two functions can be made generic but i want error handling to be
